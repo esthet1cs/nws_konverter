@@ -75,13 +75,16 @@ export_nodes(dfe, 'ereignisse.csv')
 
 ### Publikationen (have to be extracted from the edges-Tabel Person-Publikation for now)
 dfpub = df['Rel_Pers-Pub'].copy()                       # checkout table
-labels = pd.Series(dfpub['Publikationen (PUMA-ID)'])    # extract the labels for the publications
+labels = pd.Series(dfpub['Publikation (PUMA-ID)'])    # extract the labels for the publications
 labels = pd.Series(list(set(labels)))                   # remove duplicates
+dfpub2 = pd.DataFrame()
 dfpub2['Label'] = labels                                # construct a second dataframe from the extracted labels
 dfpub2['ID'] = labels                                   
 dfpub2['Type'] = 'Publikation'
 export_nodes(dfpub2, 'publikationen.csv')
 
+df_nodes = pd.concat([dfp, dfi, dfe, dfpub], ignore_index=True) # concatenate all nodes sets
+export_nodes(df_nodes, 'nodes.csv')                             # write the full set to disk
 
 ## edges
 
@@ -102,7 +105,7 @@ dfpi['Target'] = dfpi['Target'].apply(lambda x: change_id(x, 'i'))
 dfpi = dfpi.fillna('fehlt')
 
 ### person -> ereignis
-dfpe = df['Rel_Person-Ereignis'].copy()
+dfpe = df['Rel_Pers-Ereignis'].copy()
 dfpe.rename(columns={'Ereignis (ID)': 'Source', 'Person (ID)': 'Target', 'Nachweis/Quelle': 'Nachweis'}, inplace=True)
 dfpe['Source'] = dfpe['Source'].apply(lambda x: change_id(x, 'e'))
 dfpe['Target'] = dfpe['Target'].apply(lambda x: change_id(x, 'p'))
@@ -119,6 +122,6 @@ dfppu = dfppu.fillna('fehlt')
 df_edges = pd.concat([dfpp, dfpe, dfpi, dfppu], ignore_index=True)
 df_edges['Type'] = 'undirected'
 
-df_edges.to_csv('netzwerkdaten/edges.csv')
+df_edges.to_csv('netzwerkdaten/edges.csv', columns=['Source', 'Target', 'Type', 'Nachweis'], quoting=csv.QUOTE_ALL)
 
 
