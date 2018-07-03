@@ -1,6 +1,6 @@
 ## Abstract
 
-Konverter - ein Programm zum Konvertieren der tabellarisch erhobenen Netzwerkdaten in ein für Gephi passendes Format.
+Konverter - ein Programm zum Konvertieren tabellarisch erhobener Netzwerkdaten in ein für Gephi passendes Format.
 
 # Forschungsdesign
 
@@ -29,15 +29,8 @@ Konverter - ein Programm zum Konvertieren der tabellarisch erhobenen Netzwerkdat
 
 ## Konverter
 
-### Prototyp 1: all edges are equal
+#### Prototyp 1: all edges are equal
+Konverter erzeugt aus einer Excel-Datei mit den angegebenen Tabellen zwei csv-Dateien -- nodes.csv, edges.csv -- für den einfachen Import in Gephi. Alle Nodes und alle Edges werden berücksichtigt. Redundante Edges sind in den csv-Dateien redundant aufgeführt, werden aber beim Import in Gephi automatisch gewichtet.
 
-- nodelist aus allen nodes; 
-	- IDs umbenennen in Typ+ID
-
-- edges
-	- einzelne csv-dateien verarbeiten
-	- IDs an die nodes gesamtliste anpassen
-	- gesamtliste edges 
-	- no weights, no attributes
 
 
