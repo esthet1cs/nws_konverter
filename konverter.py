@@ -123,5 +123,5 @@ df_edges = pd.concat([dfpp, dfpe, dfpi, dfppu], ignore_index=True)
 df_edges['Type'] = 'undirected'
 
 df_edges.to_csv('netzwerkdaten/edges.csv', columns=['Source', 'Target', 'Type', 'Nachweis'], quoting=csv.QUOTE_ALL)
-
+print('Export successful: edges.csv')
 
