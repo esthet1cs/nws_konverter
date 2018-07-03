@@ -55,7 +55,7 @@ dfp = dfp.fillna('fehlt')                               # fill all empty fields 
 dfp['Label'] = dfp['Vorname'] + ' ' + dfp['Nachname']   # Label = Vorname + Nachname
 dfp['ID'] = dfp['ID'].apply(lambda x: change_id(x, 'p'))    # add Prefix to ID
 dfp['Type'] = 'Person'
-export_nodes(dfp, 'personen.csv')                       # export node data
+#export_nodes(dfp, 'personen.csv')                       # export node data
 
 ### Institutionen
 dfi = df['Institutionen']                               # checkout Institutionen-sheet
@@ -63,7 +63,7 @@ dfi = dfi.fillna('fehlt')                               # fill all empty fileds 
 dfi.rename(columns={'Name': 'Label'}, inplace=True)                   # rename column Name to Label
 dfi['ID'] = dfi['ID'].apply(lambda x: change_id(x, 'i')) # add prefix
 dfi['Type'] = 'Institution'
-export_nodes(dfi, 'institutionen.csv')
+#export_nodes(dfi, 'institutionen.csv')
 
 ### Ereignisse
 dfe = df['Ereignisse']
@@ -71,7 +71,7 @@ dfe = dfe.fillna('fehlt')
 dfe.rename(columns={'Name': 'Label'}, inplace=True)
 dfe['ID'] = dfe['ID'].apply(lambda x: change_id(x, 'e'))
 dfe['Type'] = 'Ereignis'
-export_nodes(dfe, 'ereignisse.csv')
+#export_nodes(dfe, 'ereignisse.csv')
 
 ### Publikationen (have to be extracted from the edges-Tabel Person-Publikation for now)
 dfpub = df['Rel_Pers-Pub'].copy()                       # checkout table
@@ -81,7 +81,7 @@ dfpub2 = pd.DataFrame()
 dfpub2['Label'] = labels                                # construct a second dataframe from the extracted labels
 dfpub2['ID'] = labels                                   
 dfpub2['Type'] = 'Publikation'
-export_nodes(dfpub2, 'publikationen.csv')
+#export_nodes(dfpub2, 'publikationen.csv')
 
 df_nodes = pd.concat([dfp, dfi, dfe, dfpub], ignore_index=True) # concatenate all nodes sets
 export_nodes(df_nodes, 'nodes.csv')                             # write the full set to disk
