@@ -60,7 +60,7 @@ dfp['Type'] = 'Person'
 ### Institutionen
 dfi = df['Institutionen']                               # checkout Institutionen-sheet
 dfi = dfi.fillna('fehlt')                               # fill all empty fileds with the value 'fehlt'
-dfi.rename(columns={'Name': 'Label'}, inplace=True)                   # rename column Name to Label
+#dfi.rename(columns={'Name': 'Label'}, inplace=True)                 # rename column Name to Label
 dfi['ID'] = dfi['ID'].apply(lambda x: change_id(x, 'i')) # add prefix
 dfi['Type'] = 'Institution'
 #export_nodes(dfi, 'institutionen.csv')
